@@ -7,7 +7,7 @@
 |3    |[Gear Ratios](https://adventofcode.com/2023/day/3)                           |[Solution](day-03)  |
 |4    |[Scratchcards](https://adventofcode.com/2023/day/4)                          |[Solution](day-04)  |
 |5    |[If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5)       |[Solution](day-05)  |
-|6    ||[Solution](day-06)  |
+|6    |[Wait For It](https://adventofcode.com/2023/day/6)                           |[Solution](day-06)  |
 |7    ||[Solution](day-07)  |
 |8    ||[Solution](day-08)  |
 |9    ||[Solution](day-09)  |
