@@ -1,33 +1,26 @@
-# assign each hand a score based on its strenght to be able to rank it
-# calculate result
-input = list(open('day07_test.in'))
+# Solution by u/4HbQ
+# Commented for (my own) better understanding
 
-values = {
-    '2': 1,
-    '3': 2,
-    '4': 3,
-    '5': 4,
-    '6': 5,
-    '7': 6,
-    '8': 7,
-    '9': 9,
-    'T': 10,
-    'J': 11,
-    'Q': 12,
-    'K': 13,
-    'A': 14
-}
+def eval(line):
+    hand, bid = line.split()
+    hand = hand.translate(str.maketrans('TJQKA', face))
+    # Creates a list with the highest count of each card in the hand
+    # example:
+        # hand: C89AA
+            # 089AA -> [2, 2, 1, 1, 1] (max and is therefore chosen)
+            # C09AA -> [2, 2, 1, 1, 1] (max)
+            # C80AA -> [2, 2, 1, 1, 1] (max)
+            # C890A -> [1, 1, 1, 1, 1]
+            # C89A0 -> [1, 1, 1, 1, 1]
+        # best: [2, 2, 1, 1, 1]
+    best = max(type(hand.replace('0', r)) for r in hand)
+    return best, hand, int(bid)
 
-winnings = []
+# Counts number of card occurrences in a hand 
+# and sorts them in descending order
+def type(hand):
+    return sorted(map(hand.count, hand), reverse=True)
 
-for line in input:
-    hand = line.split()[0]
-    winning = 0
-    cards = []
-    for card in hand:
-        if card not in cards:
-            winning += values[card] ** hand.count(card) if hand.count(card) > 0 else 0
-            cards.append(card)
-    winnings.append(winning)
-
-print(winnings)
+for face in 'ABCDE', 'A0CDE':
+    print(sum(rank * bid for rank, (*_, bid) in
+        enumerate(sorted(map(eval, open('day07.in'))), start=1)))
